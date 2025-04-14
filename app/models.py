@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Text
-from app.database import Base  # We'll define the Base class in database.py
+from sqlalchemy import Column, Integer, String, Text, Boolean
+from app.database import Base
 
 class Task(Base):
     __tablename__ = 'tasks'
@@ -7,3 +7,4 @@ class Task(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     description = Column(Text, nullable=True)
+    is_done = Column(Boolean, default=False)

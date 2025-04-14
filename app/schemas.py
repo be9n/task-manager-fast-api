@@ -1,17 +1,21 @@
 from pydantic import BaseModel
 from typing import Optional
 
-# Request data (for creating a task)
 class TaskCreate(BaseModel):
     title: str
     description: Optional[str] = None
 
-# Response data (for returning a task)
+class TaskUpdate(BaseModel):
+    title: str
+    description: Optional[str] = None
+    is_done: bool
+
 class Task(BaseModel):
     id: int
     title: str
     description: Optional[str] = None
+    is_done: bool
 
     model_config = {
-        "from_attributes": True  # same as `orm_mode = True` in v1
-    } # Tells Pydantic to work with SQLAlchemy models
+        "from_attributes": True 
+    } 

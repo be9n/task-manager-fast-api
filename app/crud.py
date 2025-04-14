@@ -14,15 +14,16 @@ def create_task(db: Session, task: schemas.TaskCreate):
 def get_task(db: Session, task_id: int):
     return db.query(models.Task).filter(models.Task.id == task_id).first()
 
-def update_task(db: Session, task_id: int, task: schemas.TaskCreate):
-    db_task = db.query(models.Task).filter(models.Task.id == task_id).first()
-    if db_task:
-        db_task.title = task.title
-        db_task.description = task.description
+def update_task(db: Session, task_id: int, task_update: schemas.TaskUpdate):
+    task = db.query(models.Task).filter(models.Task.id == task_id).first()
+    if task:
+        task.title = task_update.title
+        task.description = task_update.description
+        task.is_done = task_update.is_done
         db.commit()
-        db.refresh(db_task)
-        return db_task
-    return None
+        db.refresh(task)
+    return task
+
 
 def delete_task(db: Session, task_id: int):
     db_task = db.query(models.Task).filter(models.Task.id == task_id).first()
