@@ -19,8 +19,8 @@ FastAPI ile geliştirilmiş, JWT tabanlı kimlik doğrulaması, kullanıcı kayd
 
 ### 1. Depoyu Klonlayın:
 ```bash
-git clone https://your-repository-url
-cd your-repository-folder
+git clone https://github.com/be9n/task-manager-fast-api.git
+cd task-manager-fast-api
 ```
 
 ### 2. Python Sanal Ortamı Oluşturun (Opsiyonel, önerilir)
