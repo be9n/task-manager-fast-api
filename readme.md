@@ -1,12 +1,9 @@
+
+# Task Manager
+
 # FastAPI Görev Yöneticisi
 
 FastAPI ile geliştirilmiş, JWT tabanlı kimlik doğrulaması, kullanıcı kaydı, giriş yapma ve görevlerin CRUD işlemlerini destekleyen basit bir görev yönetim uygulaması.
-
-## Özellikler
-
-- Kullanıcı kaydı ve JWT ile giriş yapma.
-- Görevler için CRUD işlemleri.
-- Korunan yollar için JWT tabanlı kimlik doğrulama.
 
 ## Gereksinimler
 
@@ -52,5 +49,3 @@ http://127.0.0.1:8000/docs
 Uygulamanın doğru çalışıp çalışmadığını kontrol etmek için testleri çalıştırabilirsiniz. Testleri çalıştırmak için aşağıdaki komutu kullanın:
 
 pytest
-
-# task-manager-fast-api
