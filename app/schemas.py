@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Any, List, Dict, Generic, TypeVar
 
 class TaskCreate(BaseModel):
     title: str
@@ -19,3 +19,12 @@ class Task(BaseModel):
     model_config = {
         "from_attributes": True 
     } 
+
+T = TypeVar('T')
+
+class StandardResponse(BaseModel, Generic[T]):
+    data: Optional[T] = None
+    message: str = "Success"
+    status_code: int = 200
+    success: bool = True
+    errors: Optional[List[Dict[str, Any]]] = None 

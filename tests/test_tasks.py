@@ -15,8 +15,10 @@ def created_task():
         "title": "Test Task",
         "description": "This is a test task"
     })
-    assert response.status_code == 200
-    return response.json()
+    response_json = response.json()
+    assert response_json["status_code"] == 201
+    assert response_json["success"] is True
+    return response_json["data"]
 
 def test_create_task(created_task):
     assert "id" in created_task
@@ -25,14 +27,18 @@ def test_create_task(created_task):
 
 def test_get_tasks():
     response = client.get("/tasks/")
-    assert response.status_code == 200
-    assert isinstance(response.json(), list)
+    response_json = response.json()
+    assert response_json["status_code"] == 200
+    assert response_json["success"] is True
+    assert isinstance(response_json["data"], list)
 
 def test_get_task_by_id(created_task):
     task_id = created_task["id"]
     response = client.get(f"/tasks/{task_id}")
-    assert response.status_code == 200
-    data = response.json()
+    response_json = response.json()
+    assert response_json["status_code"] == 200
+    assert response_json["success"] is True
+    data = response_json["data"]
     assert data["id"] == task_id
 
 def test_update_task(created_task):
@@ -42,8 +48,10 @@ def test_update_task(created_task):
         "description": "Updated description",
         "is_done": False
     })
-    assert response.status_code == 200
-    data = response.json()
+    response_json = response.json() 
+    assert response_json["status_code"] == 200
+    assert response_json["success"] is True
+    data = response_json["data"]
     assert data["title"] == "Updated Task Title"
     assert data["description"] == "Updated description"
     assert data["is_done"] is False
@@ -51,18 +59,26 @@ def test_update_task(created_task):
 def test_mark_task_done(created_task):
     task_id = created_task["id"]
     response = client.patch(f"/tasks/{task_id}/done")
-    assert response.status_code == 200
-    data = response.json()
+    response_json = response.json()
+    assert response_json["status_code"] == 200
+    assert response_json["success"] is True
+    data = response_json["data"]
     assert data["is_done"] is True
 
 def test_delete_task(created_task):
     task_id = created_task["id"]
     response = client.delete(f"/tasks/{task_id}")
-    assert response.status_code == 200
-    data = response.json()
+    response_json = response.json()
+    assert response_json["status_code"] == 200
+    assert response_json["success"] is True
+    data = response_json["data"]
     assert data["id"] == task_id
 
 def test_get_deleted_task(created_task):
     task_id = created_task["id"]
     response = client.get(f"/tasks/{task_id}")
-    assert response.status_code == 404
+    response_json = response.json()
+    assert response_json["status_code"] == 404
+    assert response_json["success"] is False
+    assert response_json["data"] is None
+    assert len(response_json["errors"]) > 0
