@@ -3,7 +3,7 @@
 
 # FastAPI Görev Yöneticisi
 
-FastAPI ile geliştirilmiş, JWT tabanlı kimlik doğrulaması, kullanıcı kaydı, giriş yapma ve görevlerin CRUD işlemlerini destekleyen basit bir görev yönetim uygulaması.
+FastAPI ile geliştirilmiş, görevlerin CRUD işlemlerini destekleyen basit bir görev yönetim uygulaması.
 
 ## Gereksinimler
 
